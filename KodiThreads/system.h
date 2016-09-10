@@ -22,6 +22,8 @@
 
 
 
+#include <util/StringUtils.h>
+
 extern int g_LOGERROR;
 extern int g_LOGDEBUG;
 extern int g_LOGINFO;
