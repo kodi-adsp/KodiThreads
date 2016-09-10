@@ -34,20 +34,21 @@ set(HEADERS KodiThreads/threads/platform/Implementation.cpp
 
 include_directories(${p8-platform_INCLUDE_DIRS})
             
-addon_source_group("${SOURCES}")
-addon_source_group("${HEADERS}")
-
 if(MSVC)
   list(APPEND SOURCES KodiThreads/threads/platform/win/Win32Exception.cpp)
   list(APPEND HEADERS KodiThreads/threads/platform/win/Win32Exception.h)
 endif()
 
+addon_source_group("${SOURCES}")
+addon_source_group("${HEADERS}")
+
 add_library(${PROJECT_NAME} STATIC ${SOURCES} ${HEADERS})
 add_library(kodi::${PROJECT_NAME} ALIAS ${PROJECT_NAME})
 target_include_directories(${PROJECT_NAME}
-                           PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}
-                           INTERFACE $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
-                           INTERFACE $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/..>)
+                           PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}
+                           PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/KodiThreads
+                           INTERFACE $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/KodiThreads>
+                                     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>)
 if(MSVC)
   target_link_libraries(${PROJECT_NAME} PUBLIC winmm.lib)
 endif()
