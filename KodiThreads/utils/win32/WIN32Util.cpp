@@ -34,11 +34,11 @@
 #include "guilib/LocalizeStrings.h"
 #include "utils/CharsetConverter.h"
 #include "utils/log.h"
-#include "powermanagement/PowerManager.h"
+#include "powermanagement\PowerManager.h"
 #include "utils/SystemInfo.h"
 #include "utils/Environment.h"
 #include "utils/StringUtils.h"
-#include "platform/win32/crts_caller.h"
+#include "win32/crts_caller.h"
 
 #include <cassert>
 
